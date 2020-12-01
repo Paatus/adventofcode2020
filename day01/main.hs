@@ -1,23 +1,12 @@
-nums = [1721, 979, 366, 299, 675, 1456]
-
 subsets 0 _ = [[]]
 subsets _ [] = []
 subsets n (x : xs) = map (x :) (subsets (n - 1) xs) ++ subsets n xs
 
-
 is2020 :: (Num a, Eq a) => [a] -> Bool
-is2020 xs = (==) 2020 $ sum
-    where sum = foldl (+) 0 xs
-
-
-multiplyNums :: Num a => [a] -> a
-multiplyNums = foldl (*) 1
-
-a :: IO String
-a = return "asd"
+is2020 xs = (==) 2020 $ sum xs
 
 solve :: (Eq a, Num a) => [[a]] -> a
-solve subsets = head $ map multiplyNums $ filter is2020 subsets
+solve subsets = head $ map product $ filter is2020 subsets
 
 part1 :: (Eq a, Show a, Num a) => [a] -> String
 part1 nums = show $ solve $ subsets 2 nums
