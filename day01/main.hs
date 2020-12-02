@@ -1,3 +1,4 @@
+subsets :: Integer -> [a] -> [[a]]
 subsets 0 _ = [[]]
 subsets _ [] = []
 subsets n (x : xs) = map (x :) (subsets (n - 1) xs) ++ subsets n xs
@@ -16,7 +17,11 @@ part2 nums = show $ solve $ subsets 3 nums
 
 main :: IO ()
 main = do
-    filecontents <- readFile "input"
-    let nums = map read $ lines filecontents
-    putStrLn ("Part 1: " ++ part1 nums ++ "\n" ++
-              "Part 2: " ++ part2 nums ++ "\n")
+  filecontents <- readFile "input"
+  let nums = map read $ lines filecontents
+  putStrLn
+    ( "Part 1: " ++ part1 nums ++ "\n"
+        ++ "Part 2: "
+        ++ part2 nums
+        ++ "\n"
+    )
